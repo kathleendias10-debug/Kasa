@@ -178,7 +178,9 @@ function loadFooter() {
                 </div>
 
             </div>
-
+<div class="footer-disclaimer">
+    © 2026 KASA · Projet fictif réalisé dans le cadre d'un portfolio.
+</div>
         </footer>
 
     `;
