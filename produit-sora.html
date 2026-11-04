@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bibliothèque SORA | KASA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        Livraison offerte dès 150 € · Retours sous 30 jours
+    </div>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="product-page">
+
+    <div class="product-breadcrumb">
+
+        <a href="index.html">Accueil</a>
+
+        <span>→</span>
+
+        <a href="tables-basses.html">Mobilier</a>
+
+        <span>→</span>
+
+        <span>SORA</span>
+
+    </div>
+
+
+    <div class="product-detail">
+
+        <div class="product-gallery">
+
+            <div class="product-main-image">
+
+                <img
+                    src="assets/images/produit-bibliotheque-sora.jpg"
+                    alt="Bibliothèque SORA KASA"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="product-details">
+
+            <p class="section-eyebrow">
+                BIBLIOTHÈQUE · BUREAU
+            </p>
+
+            <h1>
+                Bibliothèque SORA
+            </h1>
+
+            <p class="product-price">
+                749 €
+            </p>
+
+            <p class="product-description">
+                La bibliothèque SORA joue sur les lignes et les volumes
+                pour structurer l'espace avec légèreté. Une pièce généreuse
+                qui associe rangement fonctionnel et esthétique naturelle.
+            </p>
+
+
+            <div class="product-material">
+
+                <span>Matière</span>
+
+                <strong>
+                    Bois massif &amp; rotin
+                </strong>
+
+            </div>
+
+
+            <div class="product-material">
+
+                <span>Dimensions</span>
+
+                <strong>
+                    180 × 40 × 190 cm
+                </strong>
+
+            </div>
+
+
+            <div class="product-material">
+
+                <span>Origine</span>
+
+                <strong>
+                    Asie du Sud-Est
+                </strong>
+
+            </div>
+
+
+            <div class="product-purchase">
+
+                <div class="quantity-selector">
+
+                    <button
+                        type="button"
+                        class="quantity-minus"
+                        aria-label="Diminuer la quantité"
+                    >
+                        −
+                    </button>
+
+                    <span class="quantity-value">
+                        1
+                    </span>
+
+                    <button
+                        type="button"
+                        class="quantity-plus"
+                        aria-label="Augmenter la quantité"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-to-cart"
+                >
+                    Ajouter au panier
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/components.js"></script>
+
+<script>
+
+const quantityValue =
+    document.querySelector('.quantity-value');
+
+const quantityMinus =
+    document.querySelector('.quantity-minus');
+
+const quantityPlus =
+    document.querySelector('.quantity-plus');
+
+const addToCart =
+    document.querySelector('.add-to-cart');
+
+
+let quantity = 1;
+
+
+quantityMinus.addEventListener('click', () => {
+
+    if (quantity > 1) {
+
+        quantity--;
+
+        quantityValue.textContent = quantity;
+
+    }
+
+});
+
+
+quantityPlus.addEventListener('click', () => {
+
+    quantity++;
+
+    quantityValue.textContent = quantity;
+
+});
+
+
+addToCart.addEventListener('click', () => {
+
+    const product = {
+
+        name: 'Bibliothèque SORA',
+
+        price: 749,
+
+        quantity: quantity,
+
+        image: 'assets/images/produit-bibliotheque-sora.jpg'
+
+    };
+
+
+    let cart =
+        JSON.parse(localStorage.getItem('kasaCart')) || [];
+
+
+    const existingProduct =
+        cart.find(
+            product =>
+                product.name === 'Bibliothèque SORA'
+        );
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity += quantity;
+
+    } else {
+
+        cart.push(product);
+
+    }
+
+
+    localStorage.setItem(
+        'kasaCart',
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    addToCart.textContent =
+        'Ajouté au panier ✓';
+
+
+    setTimeout(() => {
+
+        addToCart.textContent =
+            'Ajouter au panier';
+
+    }, 2000);
+
+});
+
+</script>
+
+</body>
+</html>

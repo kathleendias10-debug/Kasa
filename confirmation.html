@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande confirmée | KASA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        Livraison offerte dès 150 € · Retours sous 30 jours
+    </div>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="confirmation-page">
+
+            <div class="confirmation-content">
+
+                <p class="section-eyebrow">MERCI POUR VOTRE COMMANDE</p>
+
+                <h1>Commande confirmée</h1>
+
+                <p class="confirmation-message">
+                    Votre commande a bien été enregistrée.
+                    Nous vous remercions pour votre confiance.
+                </p>
+
+                <div class="confirmation-number">
+                    <span>Numéro de commande</span>
+                    <strong id="order-number"></strong>
+                </div>
+
+                <a href="index.html" class="confirmation-button">
+                    Retourner à l'accueil
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+<script>
+
+const orderNumber = document.querySelector('#order-number');
+
+const savedOrderNumber = sessionStorage.getItem('kasaOrderNumber');
+
+if (savedOrderNumber) {
+    orderNumber.textContent = savedOrderNumber;
+} else {
+    orderNumber.textContent = '—';
+}
+
+</script>
+<div id="site-footer"></div>
+<script src="js/products.js"></script>
+<script src="js/components.js"></script>
+</body>
+</html>

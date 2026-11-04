@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Coussin TALA | KASA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<main class="product-page">
+
+    <div class="product-breadcrumb">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <a href="decoration.html">Décoration</a>
+        <span>/</span>
+        <span>Coussin TALA</span>
+    </div>
+
+    <section class="product-detail">
+
+        <div class="product-gallery">
+            <div class="product-main-image">
+                <img
+                    src="assets/images/produit-coussin-tala.jpg"
+                    alt="Coussin TALA"
+                >
+            </div>
+        </div>
+
+        <div class="product-details">
+
+            <p class="section-eyebrow">
+                TEXTILE
+            </p>
+
+            <h1>
+                Coussin TALA
+            </h1>
+
+            <p class="product-price">
+                49 €
+            </p>
+
+            <p class="product-description">
+                Le coussin TALA apporte une touche douce et naturelle
+                à l'intérieur. Son aspect texturé et ses teintes
+                chaleureuses permettent de composer facilement
+                une décoration confortable et élégante.
+            </p>
+
+            <div class="product-material">
+                <span>Matière</span>
+                <strong>Lin et coton</strong>
+            </div>
+
+            <div class="product-purchase">
+
+                <div class="quantity-selector">
+
+                    <button
+                        type="button"
+                        class="quantity-minus"
+                        aria-label="Diminuer la quantité"
+                    >
+                        −
+                    </button>
+
+                    <span class="quantity-value">
+                        1
+                    </span>
+
+                    <button
+                        type="button"
+                        class="quantity-plus"
+                        aria-label="Augmenter la quantité"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="add-to-cart"
+                >
+                    Ajouter au panier
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/components.js"></script>
+
+<script>
+
+const quantityValue =
+    document.querySelector('.quantity-value');
+
+const quantityMinus =
+    document.querySelector('.quantity-minus');
+
+const quantityPlus =
+    document.querySelector('.quantity-plus');
+
+const addToCart =
+    document.querySelector('.add-to-cart');
+
+let quantity = 1;
+
+
+quantityMinus.addEventListener('click', () => {
+
+    if (quantity > 1) {
+
+        quantity--;
+
+        quantityValue.textContent =
+            quantity;
+
+    }
+
+});
+
+
+quantityPlus.addEventListener('click', () => {
+
+    quantity++;
+
+    quantityValue.textContent =
+        quantity;
+
+});
+
+
+addToCart.addEventListener('click', () => {
+
+    const product = {
+
+        name: 'Coussin TALA',
+
+        price: 49,
+
+        quantity: quantity,
+
+        image: 'assets/images/produit-coussin-tala.jpg'
+
+    };
+
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem('kasaCart')
+        ) || [];
+
+
+    const existingProduct =
+        cart.find(
+            product =>
+                product.name === 'Coussin TALA'
+        );
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity +=
+            quantity;
+
+    } else {
+
+        cart.push(product);
+
+    }
+
+
+    localStorage.setItem(
+        'kasaCart',
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    addToCart.textContent =
+        'Ajouté au panier ✓';
+
+
+    setTimeout(() => {
+
+        addToCart.textContent =
+            'Ajouter au panier';
+
+    }, 2000);
+
+});
+
+</script>
+
+</body>
+</html>
