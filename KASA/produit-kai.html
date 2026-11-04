@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meuble TV KAI | KASA</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        Livraison offerte dès 150 € · Retours sous 30 jours
+    </div>
+
+    <div id="site-header"></div>
+
+
+    <main>
+
+        <section class="product-page">
+
+    <div class="product-breadcrumb">
+
+        <a href="index.html">Accueil</a>
+
+        <span>→</span>
+
+        <a href="tables-basses.html">Mobilier</a>
+
+        <span>→</span>
+
+        <span>KAI</span>
+
+    </div>
+
+
+    <div class="product-detail">
+
+        <div class="product-gallery">
+
+            <div class="product-main-image">
+
+                <img
+                    src="assets/images/produit-meuble-tv-kai.jpg"
+                    alt="Meuble TV KAI en bois massif"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="product-details">
+
+            <p class="section-eyebrow">
+                MEUBLE TV
+            </p>
+
+            <h1>
+                Meuble TV KAI
+            </h1>
+
+            <p class="product-price">
+                649 €
+            </p>
+
+            <p class="product-description">
+                Le meuble TV KAI associe la chaleur du bois naturel
+                à une silhouette contemporaine et épurée.
+                Une pièce pensée pour structurer le salon
+                avec élégance et simplicité.
+            </p>
+
+
+            <div class="product-material">
+
+                <span>Matière</span>
+
+                <strong>
+                    Bois massif
+                </strong>
+
+            </div>
+
+
+            <div class="product-material">
+
+                <span>Dimensions</span>
+
+                <strong>
+                    180 × 45 × 50 cm
+                </strong>
+
+            </div>
+
+
+            <div class="product-material">
+
+                <span>Origine</span>
+
+                <strong>
+                    Asie du Sud-Est
+                </strong>
+
+            </div>
+
+
+            <div class="product-purchase">
+
+                <div class="quantity-selector">
+
+                    <button
+                        type="button"
+                        class="quantity-minus"
+                    >
+                        −
+                    </button>
+
+                    <span class="quantity-value">
+                        1
+                    </span>
+
+                    <button
+                        type="button"
+                        class="quantity-plus"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+
+                <button class="add-to-cart">
+                    Ajouter au panier
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+ </main>
+
+<div id="site-footer"></div>
+
+<script src="js/products.js"></script>
+<script src="js/components.js"></script>
+
+<script>
+
+const quantityValue =
+    document.querySelector('.quantity-value');
+
+const quantityMinus =
+    document.querySelector('.quantity-minus');
+
+const quantityPlus =
+    document.querySelector('.quantity-plus');
+
+const addToCart =
+    document.querySelector('.add-to-cart');
+
+
+let quantity = 1;
+
+
+quantityMinus.addEventListener('click', () => {
+
+    if (quantity > 1) {
+
+        quantity--;
+
+        quantityValue.textContent = quantity;
+
+    }
+
+});
+
+
+quantityPlus.addEventListener('click', () => {
+
+    quantity++;
+
+    quantityValue.textContent = quantity;
+
+});
+
+
+addToCart.addEventListener('click', () => {
+
+    const product = {
+
+        name: 'Meuble TV KAI',
+
+        price: 649,
+
+        quantity: quantity,
+
+        image: 'assets/images/produit-meuble-tv-kai.jpg'
+
+    };
+
+
+    let cart =
+        JSON.parse(localStorage.getItem('kasaCart')) || [];
+
+
+    const existingProduct =
+        cart.find(
+            product =>
+                product.name === 'Meuble TV KAI'
+        );
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity += quantity;
+
+    } else {
+
+        cart.push(product);
+
+    }
+
+
+    localStorage.setItem(
+        'kasaCart',
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+
+    addToCart.textContent =
+        'Ajouté au panier ✓';
+
+
+    setTimeout(() => {
+
+        addToCart.textContent =
+            'Ajouter au panier';
+
+    }, 2000);
+
+});
+
+</script>
+
+</body>
+</html>
